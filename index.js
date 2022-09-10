@@ -62,11 +62,6 @@ deleteBook = id => {
     updateLibrary(library);
 }
 
-// const theHobbit = new Book('The Hobbit', 'JRR Tolkien', '295', false)
-
-// console.log(theHobbit.info())
-// console.log(library);
-
 readButtonSetup = () => {
     readButtons = document.querySelectorAll('.read');
     readButtons.forEach(btn => {
@@ -112,7 +107,7 @@ clearForm = () => {
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
     document.getElementById('pages').value = '';
-    document.getElementById('read').value = false;
+    document.getElementById('read').checked = false;
 }
 
 submitButton.addEventListener('click', e => {
@@ -121,7 +116,8 @@ submitButton.addEventListener('click', e => {
     newBook.title = document.getElementById('title').value;
     newBook.author = document.getElementById('author').value;
     newBook.pages = document.getElementById('pages').value;
-    newBook.read = document.getElementById('read').value;
+    console.log(document.getElementById('read').checked);
+    newBook.read = document.getElementById('read').checked;
     addBookToLibrary(library, newBook);
     clearForm();
     modal.style.display = 'none';
