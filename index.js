@@ -116,7 +116,6 @@ submitButton.addEventListener('click', e => {
     newBook.title = document.getElementById('title').value;
     newBook.author = document.getElementById('author').value;
     newBook.pages = document.getElementById('pages').value;
-    console.log(document.getElementById('read').checked);
     newBook.read = document.getElementById('read').checked;
     addBookToLibrary(library, newBook);
     clearForm();
