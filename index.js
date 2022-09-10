@@ -13,7 +13,7 @@ updateLibrary = (library) => {
                 </div>
 
                 <div class="book-info">
-                    ${library[i].author} <br />
+                    By ${library[i].author} <br />
             
                     ${library[i].pages} pages<br />
                 
@@ -45,6 +45,7 @@ function Book(title, author, pages, read) {
 addBookToLibrary = (library, book) => {
     library.push(book);
     updateLibrary(library);
+    console.log(library);
 }
 
 markAsRead = id => {
@@ -95,7 +96,8 @@ addButton.addEventListener('click', () => {
     modal.style.display = "block";
 })
 
-discard.addEventListener('click', () => {
+discard.addEventListener('click', e => {
+    e.preventDefault();
     modal.style.display = "none";
     clearForm();
 })
