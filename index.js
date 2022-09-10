@@ -10,15 +10,22 @@ let library = [
         "author": "J.K. Rowling",
         "pages": 300,
         "read": false
+    },
+    {
+        "title": "Book",
+        "author": "Author",
+        "pages": 500,
+        "read": "false"
     }
 ];
 
 libraryContainer = document.getElementById('library-container');
 
-fillLibrary = (library) => {
+updateLibrary = (library) => {
+    libraryContainer.innerHTML = '';
     for (i = 0; i < library.length; i++) {
         newBook = `
-            <div class="book-container">
+            <div class="book-container" id="${i}">
 
                 <div class="book-title">
                     ${library[i].title}
@@ -33,12 +40,14 @@ fillLibrary = (library) => {
                 </div>
 
                 <div class="book-buttons">
-                    <button class="book-btn read">Read book</button>
-                    <button class="book-btn delete">Delete book</button>
+                    <button class="book-btn read" id="${i}">Read book</button>
+                    <button class="book-btn delete" id="${i}">Delete book</button>
                 </div>
             </div>
         `
         libraryContainer.innerHTML += newBook;
+        readButtonSetup();
+        deleteButtonSetup();
     }
 }
 
@@ -52,13 +61,48 @@ function Book(title, author, pages, read) {
     }
 }
 
-function addBookToLibrary(library, book) {
+addBookToLibrary = (library, book) => {
     library.push(book);
 }
 
-fillLibrary(library);
+markAsRead = id => {
+    if (library[id].read) {
+        library[id].read = false;
+    } else if (!library[id].read) {
+        library[id].read = true;
+    }
+    updateLibrary(library);
+}
+
+deleteBook = id => {
+    library.splice(id, 1);
+    updateLibrary(library);
+}
 
 // const theHobbit = new Book('The Hobbit', 'JRR Tolkien', '295', false)
 
 // console.log(theHobbit.info())
 // console.log(library);
+
+readButtonSetup = () => {
+    readButtons = document.querySelectorAll('.read');
+    readButtons.forEach(btn => {
+        btn.addEventListener('click', e => {
+            book = e.target.id;
+            markAsRead(book);
+        })
+    })
+}
+
+deleteButtonSetup = () => {
+    deleteButtons = document.querySelectorAll('.delete');
+    deleteButtons.forEach(btn => {
+        btn.addEventListener('click', e => {
+            book = e.target.id;
+            console.log(book);
+            deleteBook(book);
+        })
+    })
+}
+
+updateLibrary(library);
