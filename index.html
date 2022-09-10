@@ -10,6 +10,29 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <div id="add-book-window" class="modal">
+
+        <div class="modal-content">
+            <div class="book-title">Add new book</div>
+            <form id="add-book-form">
+                <label for="title">Book Title</label>
+                <input type="text" id="title" placeholder="Book Title">
+                <label for="author">Book Author</label>
+                <input type="text" id="author" placeholder="Book Author">
+                <label for="title">Number of pages</label>
+                <input type="number" id="pages" placeholder="Number of pages">
+                <div class="read-checkbox">
+                    <label for="read">Read?</label>
+                    <input id="read" type="checkbox">
+                </div>
+                
+                <button class="book-btn submit" id="submit-book">Add Book</button>
+                <button class="book-btn discard" id="discard">Discard</button>
+            </form>
+        </div>
+      
+    </div>
+
     <div id="top-bar">
         <div id="page-title">📚 Library</div>
         <button id="add-book-button">Add Book</button>
@@ -17,7 +40,6 @@
     
     <div id="library-container">
 
-        
 
     </div>
 </body>
